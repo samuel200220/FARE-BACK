@@ -1,0 +1,35 @@
+#spring:
+#  data:
+#    cassandra:
+#      contact-points: 127.0.0.1
+#      port: 9042
+#      keyspace-name: fare_calculator
+#      local-datacenter: datacenter1
+spring:
+  application:
+    name: fare-calculator-back
+  cassandra:
+    keyspace-name: fare_calculator
+    contact-points: localhost
+    port: 9042
+    local-datacenter: datacenter1
+    connection:
+      connect-timeout: 5s
+      init-query-timeout: 10s
+    request:
+      timeout: 5s
+      consistency: LOCAL_QUORUM
+    pool:
+      idle-timeout: 120s
+      pool-timeout: 5s
+      heartbeat-interval: 30s
+
+server:
+  port: 8080
+
+logging:
+  level:
+    com.datastax.driver: WARN
+    com.example.farecalculator: DEBUG
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
